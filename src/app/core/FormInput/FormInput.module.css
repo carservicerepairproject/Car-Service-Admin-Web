@@ -16,10 +16,15 @@
   border-radius: 3px;
   padding: 0.7rem 1rem;
   background-color: #e2e2e2;
+  border: 2px solid transparent; /* Add this line */
+  transition: border-color 0.2s ease;
+  outline: none; /* Optional: removes default browser outline */
+}
+
+.formInput:focus {
+  border-color: var(--selective-yellow);
 }
 
 .formInput::placeholder {
   font-size: 0.8rem;
 }
-
-
