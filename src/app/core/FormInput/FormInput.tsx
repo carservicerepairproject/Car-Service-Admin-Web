@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./FormInput.module.css";
 
 interface FormInputProps {
+  label: string;
   placeholder: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,6 +13,7 @@ interface FormInputProps {
 }
 
 const FormInput: React.FC<FormInputProps> = ({
+  label,
   placeholder,
   value,
   onChange,
@@ -22,7 +24,7 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div className={`${styles.inputContainer} ${className}`}>
-      <span>{placeholder}</span>
+      <span>{label}</span>
       <input
         className={styles.formInput}
         type={type}
