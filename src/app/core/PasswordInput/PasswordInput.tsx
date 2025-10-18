@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PasswordInput.css";
+import styles from "./PasswordInput.module.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const PasswordInput = ({
@@ -24,17 +24,19 @@ export const PasswordInput = ({
   };
 
   return (
-    <div className={`input-container ${error ? "error-border" : ""}`}>
-      <span className="icon">{icon}</span>
+    <div
+      className={`${styles.inputContainer} ${error ? styles.errorBorder : ""}`}
+    >
+      <span className={styles.endIcon}>{icon}</span>
       <input
         type={showPassword ? "text" : "password"}
-        className="input-field"
+        className={styles.inputField}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         required={required}
       />
-      <span className="end-icon" onClick={togglePassword}>
+      <span className={styles.endIcon} onClick={togglePassword}>
         {showPassword ? <FaEyeSlash /> : <FaEye />}
       </span>
     </div>
