@@ -1,5 +1,5 @@
 import React from "react";
-import "./CustomButton.css";
+import styles from "./CustomButton.module.css";
 
 const CustomButton = ({
   text = "LOGIN",
@@ -17,7 +17,7 @@ const CustomButton = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`button-container ${disabled ? "disabled" : ""}`}
+      className={`${styles.buttonContainer} ${disabled ? styles.disabled : ""}`}
     >
       {text}
     </button>

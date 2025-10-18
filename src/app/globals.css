@@ -9,6 +9,10 @@ body {
 }
 :root {
   /* COLORS */
+  --selective-yellow: #ffb700;
+  --dark-gray: #1a1a1a;
+  --jet: #2a2929;
+  --black-olive: #444342;
   --deep-teal-blue: #1e3a46;
   --carcoal-teal: #182b31;
   --state-blue-gray: #58717d;

@@ -1,5 +1,5 @@
 import React from "react";
-import "./InputWrapper.css";
+import styles from "./InputWrapper.module.css";
 
 const InputWrapper = ({
   placeholder,
@@ -19,11 +19,13 @@ const InputWrapper = ({
   error?: string;
 }) => {
   return (
-    <div className={`input-container ${error ? "error-border" : ""}`}>
-      <span className="icon">{icon}</span>
+    <div
+      className={`${styles.inputContainer} ${error ? styles.errorBorder : ""}`}
+    >
+      <span className={styles.icon}>{icon}</span>
       <input
         type={type}
-        className="input-field"
+        className={styles.inputField}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

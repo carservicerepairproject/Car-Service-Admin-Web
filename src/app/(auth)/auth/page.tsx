@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import "./page.css";
-import { PasswordChecklist, Validation } from "./../../validation/validation";
+import styles from "./page.module.css";
+import { PasswordChecklist, Validation } from "../../validation/validation";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import InputWrapper from "../../core/InputWrapper/InputWrapper";
 import CustomButton from "../../core/CustomButton/CustomButton";
@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import ErrorAlert from "@/app/core/CustomAlert/ErrorAlert";
 import { PasswordInput } from "@/app/core/PasswordInput/PasswordInput";
 import { signIn } from "@/app/api/auth/auth-backend";
-import { pass } from "three/tsl";
 
 const AuthView: React.FC = () => {
   // Form state
@@ -73,15 +72,12 @@ const AuthView: React.FC = () => {
         alert("Sign up successful! Please implement your sign-up logic.");
       } else {
         const { access_token } = await signIn({ email, password });
-
         const storage = rememberMe ? localStorage : sessionStorage;
         storage.setItem("shop_token", access_token);
-
         alert("Hello Buddy!");
       }
     } catch (err) {
       console.error("Auth error in component:", err);
-
       let errorMessage = isSignUp
         ? "Sign up failed. Please try again."
         : "Login failed. Please try again.";
@@ -120,9 +116,9 @@ const AuthView: React.FC = () => {
   };
 
   return (
-    <div className="auth-screen">
-      <div className="auth-hero-container">
-        <h1>Control</h1>
+    <div className={styles.authScreen}>
+      <div className={styles.authHeroContainer}>
+        <img src="/assets/Dark Themed Logo.svg" alt="" />
         <div className="flex flex-col gap-4">
           <h2>
             Welcome To Control!
@@ -133,10 +129,17 @@ const AuthView: React.FC = () => {
         </div>
       </div>
 
-      <div className={`auth-container ${isAnimating ? "slide-out" : ""}`}>
-        <form onSubmit={handleSubmit} className="auth-form" noValidate>
-          <label>{isSignUp ? "SIGN UP" : "SIGN IN"}</label>
-          <div className="auth-form-content">
+      <div
+        className={`${styles.authContainer} ${
+          isAnimating ? styles.slideOut : ""
+        }`}
+      >
+        <form onSubmit={handleSubmit} className={styles.authForm} noValidate>
+          <label className={styles.authFormLabel}>
+            {isSignUp ? "SIGN UP" : "SIGN IN"}
+          </label>
+
+          <div className={styles.authFormContent}>
             {emailError && <ErrorAlert message={emailError} />}
 
             <InputWrapper
@@ -150,6 +153,7 @@ const AuthView: React.FC = () => {
             />
 
             {passwordError && <ErrorAlert message={passwordError} />}
+
             <PasswordInput
               placeholder="Password"
               icon={<FaLock />}
@@ -160,14 +164,13 @@ const AuthView: React.FC = () => {
             />
 
             {!isSignUp && (
-              <div className="remember-me">
+              <div className={styles.rememberMe}>
                 <input
                   type="checkbox"
-                  className="remember-me"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                <span>Remember Me</span>
+                <span>Remember me</span>
               </div>
             )}
           </div>
@@ -187,7 +190,7 @@ const AuthView: React.FC = () => {
               }
             />
 
-            <span className="switch">
+            <span className={styles.switch}>
               <a
                 href="#"
                 onClick={(e) => {
@@ -199,14 +202,21 @@ const AuthView: React.FC = () => {
               </a>
             </span>
           </div>
+
           {isSignUp && (
-            <div className="requirements">
+            <div className={styles.requirements}>
               {items.map((r) => (
                 <div
                   key={r.text}
-                  className={`requirement ${r.ok ? "ok" : "bad"}`}
+                  className={`${styles.requirement} ${
+                    r.ok ? styles.requirementOk : styles.requirementBad
+                  }`}
                 >
-                  <div className={`circle ${r.ok ? "ok" : "bad"}`} />
+                  <div
+                    className={`${styles.circle} ${
+                      r.ok ? styles.circleOk : styles.circleBad
+                    }`}
+                  />
                   <span>{r.text}</span>
                 </div>
               ))}
@@ -214,18 +224,18 @@ const AuthView: React.FC = () => {
           )}
         </form>
 
-        <ul className="auth-container-items">
+        <ul className={styles.authContainerItems}>
           <li>
-            <a href="">Contact Us</a>
+            <a href="#">Contact Us</a>
           </li>
           <li>
-            <a href="">Privacy</a>
+            <a href="#">Privacy</a>
           </li>
           <li>
-            <a href="">Terms</a>
+            <a href="#">Terms</a>
           </li>
           <li>
-            <a href="">Legal</a>
+            <a href="#">Legal</a>
           </li>
         </ul>
       </div>
