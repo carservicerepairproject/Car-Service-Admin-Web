@@ -3,7 +3,6 @@ import { Bebas_Neue, Inter } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { NextIntlClientProvider } from "next-intl";
 
-
 const bebas = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
@@ -17,16 +16,25 @@ const inter = Inter({
 
 export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
+  // ✅ Load the correct messages JSON dynamically
+  const messages = (await import(`../../../messages/${locale}.json`)).default;
+
   return (
-    <NextIntlClientProvider>
-      <html lang="en" className={`${bebas.variable} ${inter.variable}`}>
-        <body>
-          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-        </body>
-      </html>
-    </NextIntlClientProvider>
+    <html lang={locale} className={`${bebas.variable} ${inter.variable}`}>
+      <body>
+        <AppRouterCacheProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </AppRouterCacheProvider>
+      </body>
+    </html>
   );
 }
