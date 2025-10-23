@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import styles from "./page.module.css";
-import { PasswordChecklist, Validation } from "../../validation/validation";
+import { PasswordChecklist, Validation } from "../../../validation/validation";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import InputWrapper from "../../core/InputWrapper/InputWrapper";
-import CustomButton from "../../core/CustomButton/CustomButton";
+import InputWrapper from "../../../components/InputWrapper/InputWrapper";
+import CustomButton from "../../../components/CustomButton/CustomButton";
 import { useRouter } from "next/navigation";
-import ErrorAlert from "@/app/core/CustomAlert/ErrorAlert";
-import { PasswordInput } from "@/app/core/PasswordInput/PasswordInput";
-import { signIn } from "@/app/api/auth/auth-backend";
+import ErrorAlert from "@/components/CustomAlert/ErrorAlert";
+import { PasswordInput } from "@/components/PasswordInput/PasswordInput";
+import { signIn } from "@/api/auth/auth-backend";
 
 const AuthView: React.FC = () => {
   // Form state

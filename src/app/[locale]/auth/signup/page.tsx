@@ -2,8 +2,8 @@
 
 import React from "react";
 import styles from "./page.module.css";
-import FormInput from "@/app/core/FormInput/FormInput";
-import PhoneNumberInput from "@/app/core/PhoneNumberInput/PhoneNumberInput";
+import FormInput from "@/components/FormInput/FormInput";
+import PhoneNumberInput from "@/components/PhoneNumberInput/PhoneNumberInput";
 import { useTranslations } from "next-intl";
 
 export default function SignUpView() {
