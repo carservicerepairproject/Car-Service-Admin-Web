@@ -28,6 +28,7 @@
   align-items: center;
   background-color: rgb(198, 198, 198);
   gap: 5rem;
+  padding-bottom: 5rem;
 }
 
 .topBar {
@@ -51,11 +52,6 @@
 }
 
 .language {
-  display: flex;
-  gap: 0.3rem;
-}
-
-.language img {
   width: 1rem;
 }
 
@@ -72,6 +68,7 @@
   padding: 2rem;
   gap: 2rem;
 }
+
 .formSection {
   width: 100%;
   display: flex;
@@ -79,6 +76,11 @@
   align-items: start;
   gap: 2rem;
 }
+
+[dir="rtl"] .formSections {
+  align-items: end;
+}
+
 
 .formSection h1 {
   font-size: 1.2rem;
@@ -96,4 +98,5 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 1rem;
+  direction: inherit; /* Ensures grid respects parent's direction */
 }

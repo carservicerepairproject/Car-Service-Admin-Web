@@ -30,9 +30,19 @@ export const isTextOnlySchema = (allowSpaces: boolean = true) => {
   });
 };
 
-export const isNumericOnlySchema = z.string().regex(/^[0-9]+$/, "Pls Enter a Number");
+export const isNumericOnlySchema = z
+  .string()
+  .regex(/^[0-9]+$/, "Pls Enter a Number");
 
+// Schema specifically for sign-in form
 export const authSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+  rememberMe: z.boolean().optional(),
+});
+
+// Schema for other forms that need text/numeric validation
+export const fullAuthSchema = z.object({
   email: emailSchema,
   password: passwordSchema,
   rememberMe: z.boolean().optional(),
@@ -41,3 +51,4 @@ export const authSchema = z.object({
 });
 
 export type AuthSchema = z.infer<typeof authSchema>;
+export type FullAuthSchema = z.infer<typeof fullAuthSchema>;

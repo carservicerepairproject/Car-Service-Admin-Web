@@ -4,13 +4,14 @@ import React from "react";
 import styles from "./page.module.css";
 import FormInput from "@/components/FormInput/FormInput";
 import PhoneNumberInput from "@/components/PhoneNumberInput/PhoneNumberInput";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import LanguageSwitcher from "@/components/LanguageSwitcher/LanguageSwitcher";
 
 export default function SignUpView() {
-  // Load multiple namespaces
   const tOwner = useTranslations("businessOwnerInfo");
   const tBusiness = useTranslations("businessInfo");
   const tTop = useTranslations("topBar");
+  const locale = useLocale();
 
   return (
     <section className={styles.formScreen}>
@@ -20,15 +21,12 @@ export default function SignUpView() {
         <div className={styles.topBarItems}>
           <span>{tTop("helpCenter")}</span>
           <span>{tTop("login")}</span>
-          <div className={styles.language}>
-            <img src="/assets/language-svgrepo-com.svg" alt="" />
-            <span>{tTop("language")}</span>
-          </div>
+          <LanguageSwitcher />
         </div>
       </div>
 
       {/* FORM */}
-      <div className={styles.form}>
+      <div className={styles.form} dir={locale === "ar" ? "rtl" : "ltr"}>
         <div className={styles.topDesign}></div>
         <div className={styles.formSections}>
           {/* Business Owner Information */}
